@@ -9,13 +9,13 @@ use Doctrine\Persistence\ObjectManager;
 class ThemeFixtures extends Fixture
 {
     const THEME = [
-        'Tong Chaussette à la plage',
+        'Tong Chaussettes à la plage',
         'Ton pire profil',
     ];
 
     public function load(ObjectManager $manager)
     {
-        $i = 1;
+        $i = 0;
         foreach (self::THEME as $themeData) {
             $theme = new Theme();
             $theme->setTheme($themeData);

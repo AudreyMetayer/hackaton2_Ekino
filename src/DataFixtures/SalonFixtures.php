@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use App\Entity\Salon;
 use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class SalonFixtures extends Fixture
+class SalonFixtures extends Fixture implements DependentFixtureInterface
 {
     const SALONS = [
         'Mes potos',
@@ -27,7 +28,7 @@ class SalonFixtures extends Fixture
             foreach (self::SALONS as $salonData) {
                 $salon = new Salon();
                 $salon->setName($salonData);
-                $salon->addTheme($this->getReference('theme_' . ($i)));
+                $salon->addTheme($this->getReference('theme_' . (rand(0,1))));
                 $salon->setSlug($this->slugify->generate($salonData) . '-' . rand(100,200));
                 $manager->persist($salon);
             }
