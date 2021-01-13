@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Salon;
 use App\Form\SalonType;
 use App\Repository\SalonRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class SalonController extends AbstractController
     /**
      * @Route("/new", name="salon_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $salon = new Salon();
         $form = $this->createForm(SalonType::class, $salon);
@@ -37,7 +38,8 @@ class SalonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $salon->setSlug();
+            $slug = $slugify->generate($salon->getName());
+            $salon->setSlug($slug);
             $salon->addUser($user);
             $entityManager->persist($salon);
             $entityManager->flush();
