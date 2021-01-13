@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salon index{% endblock %}
+
+{% block body %}
+    <h1>Salon index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salon in salons %}
+            <tr>
+                <td>{{ salon.id }}</td>
+                <td>{{ salon.name }}</td>
+                <td>{{ salon.slug }}</td>
+                <td>
+                    <a href="{{ path('salon_show', {'id': salon.id}) }}">show</a>
+                    <a href="{{ path('salon_edit', {'id': salon.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('salon_new') }}">Create new</a>
+{% endblock %}
