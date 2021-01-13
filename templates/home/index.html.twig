@@ -3,7 +3,14 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <a href="{{ path('app_register') }}">Inscription</a>
-    <a href="{{ path('app_login') }}">Connexion</a>
+
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <button><a href="{{ path('app_login') }}">Connexion</a></button>
+            <button><a href="{{ path('app_register') }}">Inscription</a></button>
+        </div>
+    </div>
 
 {% endblock %}
