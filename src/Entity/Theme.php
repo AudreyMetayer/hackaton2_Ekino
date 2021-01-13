@@ -25,7 +25,7 @@ class Theme
     private $theme;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Salon::class, mappedBy="themes")
+     * @ORM\ManyToMany(targetEntity=Salon::class, inversedBy="themes")
      */
     private $salons;
 
@@ -63,7 +63,6 @@ class Theme
     {
         if (!$this->salons->contains($salon)) {
             $this->salons[] = $salon;
-            $salon->addTheme($this);
         }
 
         return $this;
@@ -71,9 +70,7 @@ class Theme
 
     public function removeSalon(Salon $salon): self
     {
-        if ($this->salons->removeElement($salon)) {
-            $salon->removeTheme($this);
-        }
+        $this->salons->removeElement($salon);
 
         return $this;
     }

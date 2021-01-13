@@ -25,24 +25,24 @@ class Salon
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Theme::class, inversedBy="salons")
-     */
-    private $themes;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="salons")
      */
     private $users;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Theme::class, mappedBy="salons")
+     */
+    private $themes;
+
     public function __construct()
     {
-        $this->themes = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->themes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,33 +67,9 @@ class Salon
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Theme[]
-     */
-    public function getThemes(): Collection
-    {
-        return $this->themes;
-    }
-
-    public function addTheme(Theme $theme): self
-    {
-        if (!$this->themes->contains($theme)) {
-            $this->themes[] = $theme;
-        }
-
-        return $this;
-    }
-
-    public function removeTheme(Theme $theme): self
-    {
-        $this->themes->removeElement($theme);
 
         return $this;
     }
@@ -120,6 +96,33 @@ class Salon
     {
         if ($this->users->removeElement($user)) {
             $user->removeSalon($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Theme[]
+     */
+    public function getThemes(): Collection
+    {
+        return $this->themes;
+    }
+
+    public function addTheme(Theme $theme): self
+    {
+        if (!$this->themes->contains($theme)) {
+            $this->themes[] = $theme;
+            $theme->addSalon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): self
+    {
+        if ($this->themes->removeElement($theme)) {
+            $theme->removeSalon($this);
         }
 
         return $this;

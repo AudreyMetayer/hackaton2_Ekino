@@ -25,14 +25,14 @@ class Post
     private $picture;
 
     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
+     */
+    private $user;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
      */
     private $comments;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
-     */
-    private $author;
 
     public function __construct()
     {
@@ -52,6 +52,18 @@ class Post
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
@@ -82,18 +94,6 @@ class Post
                 $comment->setPost(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): self
-    {
-        $this->author = $author;
 
         return $this;
     }
