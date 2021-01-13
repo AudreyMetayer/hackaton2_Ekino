@@ -15,6 +15,7 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $faker  =  Faker\Factory::create('fr_FR');
         for($i=0; $i < 11; $i++) {
             $post = new Post();
+            $post->setLegend($faker->title);
             $post->setUser($this->getReference('user_' . $i));
             $post->setPicture('https://loremflickr.com/320/640/all');
             $manager->persist($post);

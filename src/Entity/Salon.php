@@ -39,6 +39,11 @@ class Salon
      */
     private $themes;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -124,6 +129,18 @@ class Salon
         if ($this->themes->removeElement($theme)) {
             $theme->removeSalon($this);
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

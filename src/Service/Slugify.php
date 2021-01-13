@@ -10,7 +10,7 @@ class Slugify
     {
         $input = trim($slug);
         return mb_strtolower(preg_replace(array('/[^a-zA-Z0-9 \'-]/', '/[ -\']+/', '/^-|-$/'),
-            array('', '-', ''), $this->remove_accent($input)));
+            array('', '-', ''), $this->remove_accent($input))). '-' . rand(100,200);
     }
 
     public function remove_accent($str)
