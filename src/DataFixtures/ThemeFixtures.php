@@ -11,6 +11,11 @@ class ThemeFixtures extends Fixture
     const THEME = [
         'Tong Chaussettes à la plage',
         'Ton pire profil',
+        'Un souvenir avec une personne du groupe',
+        'Ta pire grimace',
+        'Un dossier sur une personne du groupe',
+        'Un souvenir de voyage',
+        'Un dossier de toi',
     ];
 
     public function load(ObjectManager $manager)
