@@ -3,9 +3,9 @@
 {% block title %}New Salon{% endblock %}
 
 {% block body %}
-    <h1>Create new Salon</h1>
+    <h1 class="h3 font-weight-bold mb-5 title-new-salon">Nouveau salon</h1>
 
     {{ include('salon/_form.html.twig') }}
 
-    <a href="{{ path('salon_index') }}">back to list</a>
+    <a href="{{ path('salon_index') }}">Retour</a>
 {% endblock %}
