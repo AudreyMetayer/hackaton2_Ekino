@@ -6,11 +6,16 @@ use App\Repository\SalonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * @ORM\Entity(repositoryClass=SalonRepository::class)
+ * @Vich\Uploadable()
  */
-class Salon
+class Salon implements \Serializable
 {
     /**
      * @ORM\Id
@@ -43,6 +48,31 @@ class Salon
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
+
+    /**
+     * @ORM\Column (nullable=true)
+     * @Vich\UploadableField(mapping="picture_file", fileNameProperty="picture")
+     * @var File
+     */
+    private $pictureFile;
+
+    /**
+     * @return File
+     */
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    /**
+     * @param File $pictureFile
+     * @return Salon
+     */
+    public function setPictureFile(File $pictureFile = null): Salon
+    {
+        $this->pictureFile = $pictureFile;
+        return $this;
+    }
 
     /**
      * @ORM\OneToMany(targetEntity=Post::class, mappedBy="salon")
@@ -180,4 +210,15 @@ class Salon
 
         return $this;
     }
+
+    public function serialize()
+    {
+        return $this->picture;
+    }
+
+    public function unserialize($serialized)
+    {
+        return $this->picture;
+    }
+
 }
