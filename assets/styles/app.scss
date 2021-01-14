@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+@import "global" ;
+@import "salon/salon";
 @import "home/index_home";
 @import "home/guide_home";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
@@ -7,7 +9,10 @@
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import "security/login";
 @import "register/register";
+<<<<<<< HEAD
+=======
 @import "salon/salon";
 body {
     background-color: white;
 }
+>>>>>>> 5630cb6c819fdb40529587af4943dfa5ffbc4290
