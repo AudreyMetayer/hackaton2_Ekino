@@ -4,42 +4,34 @@
 
 {% block body %}
     {% include './components/_navbar.html.twig' %}
-    <h1 class="text-white salon mb-3">Mes salons</h1>
-    <br>
+        <div class="front-items">
+            <h1 class="text-white salon mb-3">Mes salons</h1>
+            <br>
 
-    <div class="d-inline-flex">
-        <img class="beer mr-4" src="{{ asset('build/images/beer.png') }}" width="30%" alt="">
-        <img class="mx-4" src="{{ asset('build/images/famille.png') }}" width="30%" alt="">
-        <img class="mx-4" src="{{ asset('build/images/collegues.png') }}" width="30%" alt="">
-    </div>
-    <div class="d-inline-flex salon-name">
-        <h3 class="salon-name">#TeamDuHaut</h3>
-        <h3 class="salon-name-1">#Famille</h3>
-        <h3 class="salon-name-2">#Wilders</h3>
-    </div>
-    <br>
-    
-    
-    <div>
-        <a href="{{ path('salon_new') }}">
-            <img src="{{ asset('build/images/btn-rouge.png') }}" width="30%" alt="">
-        </a>
-        <a href="{{ path('salon_new') }}">
-            <img src="{{ asset('build/images/btn-vert.png') }}" width="30%" alt="">
-        </a>
-    </div>
+            <div class="salon-name">
+                {% for salon in app.user.salons %}
+                <div class="pr-4" >
+                    <a href="{{ path('salon_show', {id: salon.id}) }}">
+                        <img class="beer ml-2" src="{{ salon.picture }}" alt="photo du salon" width="370px"  {{ salon.name }}'">
+                    </a>
+                    <h3 class="salon-name mt-3">{{ salon.name }}</h3>
+                </div>
+                 {% else %}
+                    Tu n'as pas encore de salon :(
+                    {% endfor %}
+            </div>
+            <div class="creer-rejoindre-text">
+                <h3 class="creer-salon">Créer un salon</h3>
+                <h3 class="rejoindre">Rejoindre</h3>
+            </div>
+            <div class="creer-rejoindre">
+                <a href="{{ path('salon_new') }}">
+                    <img src="{{ asset('build/images/btn-rouge.png') }}" width="80%" alt="">
+                </a>
+                <a href="{{ path('salon_accessuser') }}">
+                    <img src="{{ asset('build/images/btn-vert.png') }}" width="82%" alt="">
+                </a>
+            </div>
+        </div>
 
-    {% for salon in app.user.salons %}
-
-        <a href="{{ path('salon_show', {id: salon.id}) }}"><div><img src="{{ salon.picture }}" alt="photo du salon '{{ salon.name }}'"> <br>
-                {{ salon.name }}<br>
-                Donne ce code à tes amis pour qu'ils rejoignent ton salon : {{ salon.slug }}<br>
-            </div></a>
-    {% else %}
-        pas de salon actuellement
-    {% endfor %}
-
-
-    <a href="{{ path('salon_new') }}">Create new</a>
-    <a href="{{ path('salon_accessuser') }}">Rejoindre</a>
     {% endblock %}

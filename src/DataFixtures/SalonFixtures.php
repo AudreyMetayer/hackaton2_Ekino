@@ -11,8 +11,9 @@ use Doctrine\Persistence\ObjectManager;
 class SalonFixtures extends Fixture implements DependentFixtureInterface
 {
     const SALONS = [
-        'Mes potos',
-        'Ma famille',
+        '#TeamDuHaut',
+        '#Famille',
+        '#Wilders',
     ];
 
     private $slugify;
@@ -28,7 +29,6 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::SALONS as $salonData) {
             $salon = new Salon();
             $salon->setName($salonData);
-            $salon->setPicture('https://loremflickr.com/320/640/all');
             $salon->addTheme($this->getReference('theme_' . (rand(0,1))));
             $salon->setSlug($this->slugify->generate($salonData));
             for ($j= 0; $j <= rand(1,6); $j++) {

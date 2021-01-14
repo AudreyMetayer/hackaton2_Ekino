@@ -13,6 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
+     * @Route("/guide", name="guide")
+     */
+    public function guide(): Response
+    {
+        return $this->render('home/guide.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
+
+    /**
      * @Route("/", name="_index")
      */
     public function index(): Response
