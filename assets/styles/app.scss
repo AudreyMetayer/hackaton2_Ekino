@@ -1,4 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
+@import "home/index_home";
+@import "home/guide_home";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 @import "security/login";
 @import "register/register";
 body {
