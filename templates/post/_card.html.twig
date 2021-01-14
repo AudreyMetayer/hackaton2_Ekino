@@ -1,0 +1,9 @@
+<div>
+    <img src="{{ post.picture }}" alt=""> | {{ post.legend }} <br>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('commenter !') }}</button>
+    {{ form_end(form) }}
+
+</div>

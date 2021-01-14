@@ -17,7 +17,8 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
             $post = new Post();
             $post->setLegend($faker->title);
             $post->setUser($this->getReference('user_' . $i));
-            $post->setPicture('https://loremflickr.com/320/640/all');
+            $post->setPicture('https://loremflickr.com/320/300/all');
+            $post->setSalon($this->getReference('salon_' . (rand(0,1))));
             $manager->persist($post);
             $this->addReference('post_' . $i, $post);
         }
@@ -27,6 +28,6 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return [UserFixtures::class];
+        return [UserFixtures::class, SalonFixtures::class];
     }
 }
