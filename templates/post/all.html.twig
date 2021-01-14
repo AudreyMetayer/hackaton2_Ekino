@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New post{% endblock %}
+
+{% block body %}
+
+    {% for post in salon.posts %}
+        <div>
+            <img src="{{ post.picture }}" alt=""> | {{ post.legend }} <br>
+        {{ dump(form)}}
+           {# #}
+
+            {% for comment in post.comments %}
+
+            {{ comment.user.username }}
+            {{ comment.comment }}
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('commenter !') }}</button>
+    {{ form_end(form) }}
+{% endblock %}

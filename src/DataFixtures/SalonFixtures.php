@@ -24,16 +24,22 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        for($i=1; $i < (count(self::SALONS)); $i++) {
-            foreach (self::SALONS as $salonData) {
-                $salon = new Salon();
-                $salon->setName($salonData);
-                $salon->setPicture('https://loremflickr.com/320/640/all');
-                $salon->addTheme($this->getReference('theme_' . (rand(0,1))));
-                $salon->setSlug($this->slugify->generate($salonData));
-                $manager->persist($salon);
+        $i=0;
+        foreach (self::SALONS as $salonData) {
+            $salon = new Salon();
+            $salon->setName($salonData);
+            $salon->setPicture('https://loremflickr.com/320/640/all');
+            $salon->addTheme($this->getReference('theme_' . (rand(0,1))));
+            $salon->setSlug($this->slugify->generate($salonData));
+            for ($j= 0; $j <= rand(1,6); $j++) {
+                $salon->addUser($this->getReference('user_' . rand(0,10)));
             }
+            $salon->addUser($this->getReference('user_10'));
+            $manager->persist($salon);
+            $this->addReference('salon_' . ($i), $salon);
+            $i++;
         }
+
 
         $manager->flush();
     }

@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\Salon;
 use App\Form\AccessSalonType;
+use App\Form\PostType;
 use App\Form\SalonType;
 use App\Repository\SalonRepository;
 use App\Service\Slugify;
@@ -82,11 +84,30 @@ class SalonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="salon_show", methods={"GET"})
+     * @Route("/{id}", name="salon_show", methods={"GET","POST"})
      */
-    public function show(Salon $salon): Response
+    public function show(Salon $salon, Request $request): Response
     {
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        $user = $this->getUser();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $post->setUser($user);
+            $post->setSalon($salon);
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('post_all', [
+                'id' => $salon->getId(),
+            ]);
+        }
+
         return $this->render('salon/show.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
             'salon' => $salon,
         ]);
     }
