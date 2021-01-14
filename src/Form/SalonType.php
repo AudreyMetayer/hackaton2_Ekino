@@ -22,14 +22,14 @@ class SalonType extends AbstractType
             ])
             ->add('pictureFile', VichFileType::class, [
                 'required'      => false,
-                'allow_delete'  => true, // not mandatory, default is true
+                'allow_delete'  => false, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Ajoutez une photo'
+                    'class' => 'form-salon-picture',
+                    'placeholder' => 'Ajoute une photo'
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
