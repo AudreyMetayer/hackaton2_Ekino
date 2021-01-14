@@ -7,8 +7,12 @@
     {% for post in salon.posts %}
         <div>
             <img src="{{ post.picture }}" alt=""> | {{ post.legend }} <br>
-        {{ dump(form)}}
-           {# #}
+
+            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
+            <label for="{{ post.id }}">Poste ton commentaire :</label>
+            <textarea type="text" name="{{ post.id }}"></textarea>
+            <button>Envoie ton commentaire</button>
+            </form>
 
             {% for comment in post.comments %}
 
@@ -18,8 +22,5 @@
         </div>
 
     {% endfor %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('commenter !') }}</button>
-    {{ form_end(form) }}
+
 {% endblock %}

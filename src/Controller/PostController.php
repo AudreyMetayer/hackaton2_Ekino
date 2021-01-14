@@ -22,23 +22,33 @@ class PostController extends AbstractController
      */
     public function posts(Salon $salon, Request $request): Response
     {
-        $comment = new Comment();
-        $formComment = $this->createForm(CommentType::class, $comment);
-        $formComment->handleRequest($request);
-        $user = $this->getUser();
 
-
-        if ($formComment->isSubmitted() && $formComment->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $comment->addUser($user);
-            $entityManager->persist($comment);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('salon_all');
-        }
         return $this->render('post/all.html.twig', [
             'salon' => $salon,
-            'form' => $formComment->createView()
+
+        ]);
+    }
+
+    /**
+     * @Route("/addcomm/{post}/{salon}", name="_addcomm", methods={"GET","POST"})
+     */
+    public function addcomm(Request $request, Post $post, Salon $salon): Response
+    {
+        $comment = new Comment();
+        $comm = $request->get($post->getId());
+        $user = $this->getUser();
+        $postId = $post->getId();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $comment->setUser($user);
+        $comment->setComment($comm);
+        $comment->setPost($post);
+        $entityManager->persist($comment);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('post_all', [
+            'salon' => $salon,
+            'id' => $salon->getId(),
         ]);
     }
 
