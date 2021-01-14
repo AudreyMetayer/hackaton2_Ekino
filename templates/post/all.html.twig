@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New post{% endblock %}
+
+{% block body %}
+
+    {% for post in salon.posts %}
+        <div>
+            <img src="{{ post.picture }}" alt=""> | {{ post.legend }} <br>
+
+            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
+            <label for="{{ post.id }}">Poste ton commentaire :</label>
+            <textarea type="text" name="{{ post.id }}"></textarea>
+            <button>Envoie ton commentaire</button>
+            </form>
+
+            {% for comment in post.comments %}
+
+            {{ comment.user.username }}
+            {{ comment.comment }}
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+
+{% endblock %}

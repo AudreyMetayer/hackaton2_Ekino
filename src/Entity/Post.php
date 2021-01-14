@@ -34,6 +34,16 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $legend;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Salon::class, inversedBy="posts")
+     */
+    private $salon;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -94,6 +104,30 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLegend(): ?string
+    {
+        return $this->legend;
+    }
+
+    public function setLegend(?string $legend): self
+    {
+        $this->legend = $legend;
+
+        return $this;
+    }
+
+    public function getSalon(): ?Salon
+    {
+        return $this->salon;
+    }
+
+    public function setSalon(?Salon $salon): self
+    {
+        $this->salon = $salon;
 
         return $this;
     }
