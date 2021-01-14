@@ -4,7 +4,7 @@
 
 {% block body %}
   {% for salon in app.user.salons %}
-      <a href="{{ path('salon_show', {id: salon.id}) }}"><div><img src="{{ salon.picture }}" alt="photo du salon '{{ salon.name }}'"> <br>
+      <a href="{{ path('salon_show', {id: salon.id}) }}"><div><img src="/uploads/{{ salon.picture }}" alt="photo du salon '{{ salon.name }}'"> <br>
         {{ salon.name }}<br>
       Donne ce code à tes amis pour qu'ils rejoignent ton salon : {{ salon.slug }}<br>
       </div></a>

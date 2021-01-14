@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class SalonType extends AbstractType
 {
@@ -19,14 +20,15 @@ class SalonType extends AbstractType
                     'placeholder' => 'Entrez un nom'
                 ]
             ])
-            ->add('picture', TextType::class, [
+            ->add('pictureFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Ajoutez une photo'
                 ]
             ])
-
-
         ;
     }
 
