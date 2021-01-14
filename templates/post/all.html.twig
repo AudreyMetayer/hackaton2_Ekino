@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New post{% endblock %}
+
+{% block body %}
+
+    <div class="ml-2 mt-3">
+        <a href="#"><i class="fas fa-chevron-left mr-2"></i>Retour</a>
+    </div>
+    <di class="ml-2 mt-3">
+        <h1 class="ml-2 mt-3" style="color: #EC164B"> #TeamDuHaut</h1>
+    </di>
+    {#
+    {% for post in salon.posts %}
+        <div>
+            <img src="{{ post.picture }}" alt=""> | {{ post.legend }} <br>
+
+            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
+            <label for="{{ post.id }}">Poste ton commentaire :</label>
+            <textarea type="text" name="{{ post.id }}"></textarea>
+            <button>Envoie ton commentaire</button>
+            </form>
+
+            {% for comment in post.comments %}
+
+            {{ comment.user.username }}
+            {{ comment.comment }}
+        {% endfor %}
+        </div>
+
+    {% endfor %}
+    #}
+
+    {% if salon.posts|length > 0 %}
+        <h3 class="text-center text-muted mb-2 mt-2" > 13/01/21</h3>
+
+        <p class="text-center text-muted mb-2" style="">-</p>
+        <h3 class="text-center text-muted mb-2">“La plus belle coiffure”</h3>
+
+        {% for row in salon.posts|batch(3) %}
+
+            <div class="row mx-auto ">
+                {% for post in row %}
+                    <div class="card mx-auto " style="min-width: 450px; margin-top: 30px">
+
+                        <article class="post bg-white rounded shadow">
+                            <div class="mw-100 overflow-hidden rounded-top">
+                                <a href="{{ path('post_show', {id: post.id}) }}"><img src="{{ post.picture }}" alt="{{ post.legend }}" class="w-100" /></a>
+                            </div>
+                            <h2 class="h5 pt-3 text-center"><a href="{{ path('post_show', {id: post.id}) }}"
+                                                               class="text-secondary text-decoration-none"> Afficher les commentaires </a></h2>
+
+                            <p class="text-muted text-center pb-2"><small>Submitted by {{ post.user.username }}</small></p>
+
+                        </article>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="h1 text-center">No pins yet. <a href="{{ path('salon_new') }}">Be the first !</a> </p>
+    {% endif %}
+
+
+
+
+
+{% endblock %}

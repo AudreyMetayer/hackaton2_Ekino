@@ -2,10 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\Salon;
+use App\Form\AccessSalonType;
+use App\Form\PostType;
 use App\Form\SalonType;
 use App\Repository\SalonRepository;
 use App\Service\Slugify;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +25,9 @@ class SalonController extends AbstractController
     /**
      * @Route("/", name="salon_index", methods={"GET"})
      */
-    public function index(SalonRepository $salonRepository): Response
+    public function index(): Response
     {
         return $this->render('salon/index.html.twig', [
-            'salons' => $salonRepository->findAll(),
         ]);
     }
 
@@ -54,11 +59,55 @@ class SalonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="salon_show", methods={"GET"})
+     * @Route("/accessuser", name="salon_accessuser", methods={"GET","POST"})
      */
-    public function show(Salon $salon): Response
+    public function accessUser(Request $request, SalonRepository $salonRepository, EntityManagerInterface $entityManager): Response
     {
+        $form = $this->createForm(AccessSalonType::class);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $search = $form->getData()['salon'];
+            $salon = $salonRepository->findOneBy(['slug' => $search]);
+            if ($salon){
+                $salon->addUser($this->getUser());
+                $entityManager->flush();
+                return $this->redirectToRoute('salon_index');
+            }
+        } else {
+            $this->addFlash('danger', 'Ce salon n\'existe pas');
+        }
+        return $this->render('salon/access.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="salon_show", methods={"GET","POST"})
+     */
+    public function show(Salon $salon, Request $request): Response
+    {
+        $post = new Post();
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        $user = $this->getUser();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $post->setUser($user);
+            $post->setSalon($salon);
+            $entityManager->persist($post);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('post_all', [
+                'id' => $salon->getId(),
+            ]);
+        }
+
         return $this->render('salon/show.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
             'salon' => $salon,
         ]);
     }
