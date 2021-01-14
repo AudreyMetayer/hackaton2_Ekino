@@ -11,8 +11,10 @@ use Doctrine\Persistence\ObjectManager;
 class SalonFixtures extends Fixture implements DependentFixtureInterface
 {
     const SALONS = [
+
         'Les PHPix de la Wild',
         'La table ronde',
+
     ];
 
     private $slugify;
@@ -24,6 +26,7 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+
 
         $salon = new Salon();
         $salon->setName(self::SALONS[0]);
@@ -40,6 +43,7 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
         $salon->setSlug($this->slugify->generate(self::SALONS[1]));
         $manager->persist($salon);
         $this->addReference('salon_1', $salon);
+
 
 
         $manager->flush();
