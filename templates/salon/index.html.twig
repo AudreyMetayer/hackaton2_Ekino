@@ -3,14 +3,34 @@
 {% block title %}Salon index{% endblock %}
 
 {% block body %}
-  {% for salon in app.user.salons %}
-      <a href="{{ path('salon_show', {id: salon.id}) }}"><div><img src="{{ salon.picture }}" alt="photo du salon '{{ salon.name }}'"> <br>
-        {{ salon.name }}<br>
-      Donne ce code à tes amis pour qu'ils rejoignent ton salon : {{ salon.slug }}<br>
-      </div></a>
-    {% else %}
-        pas de salon actuellement
-    {% endfor %}
-    <a href="{{ path('salon_new') }}">Create new</a>
-    <a href="{{ path('salon_accessuser') }}">Rejoindre</a>
+    {% include './components/_navbar.html.twig' %}
+        <div class="front-items">
+            <h1 class="text-white salon mb-3">Mes salons</h1>
+            <br>
+
+            <div class="salon-name">
+                {% for salon in app.user.salons %}
+                <div class="pr-4" >
+                    <a href="{{ path('salon_show', {id: salon.id}) }}">
+                        <img class="beer ml-2" src="{{ salon.picture }}" alt="photo du salon" width="370px"  {{ salon.name }}'">
+                    </a>
+                    <h3 class="salon-name mt-3">{{ salon.name }}</h3>
+                </div>
+                 {% else %}
+                    Tu n'as pas encore de salon :(
+                    {% endfor %}
+            </div>
+            <div class="creer-rejoindre-text">
+                <h3 class="creer-salon">Créer un salon</h3>
+                <h3 class="rejoindre">Rejoindre</h3>
+            </div>
+            <div class="creer-rejoindre">
+                <a href="{{ path('salon_new') }}">
+                    <img src="{{ asset('build/images/btn-rouge.png') }}" width="80%" alt="">
+                </a>
+                <a href="{{ path('salon_accessuser') }}">
+                    <img src="{{ asset('build/images/btn-vert.png') }}" width="82%" alt="">
+                </a>
+            </div>
+        </div>
     {% endblock %}
