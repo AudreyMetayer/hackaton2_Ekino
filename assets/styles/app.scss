@@ -1,3 +1,6 @@
+@import "~bootstrap/scss/bootstrap";
+@import "security/login";
+@import "register/register";
 body {
-    background-color: blue;
+    background-color: white;
 }
