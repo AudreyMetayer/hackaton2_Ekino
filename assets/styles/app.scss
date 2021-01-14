@@ -1,4 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
+@import "global" ;
+@import "salon/salon";
 @import "home/index_home";
 @import "home/guide_home";
 @import "post/post_all";
@@ -9,8 +11,3 @@
 @import "security/login";
 @import "register/register";
 
-
-
-body {
-    background-color: white;
-}

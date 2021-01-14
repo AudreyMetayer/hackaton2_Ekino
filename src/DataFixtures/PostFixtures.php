@@ -12,16 +12,30 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $faker  =  Faker\Factory::create('fr_FR');
-        for($i=0; $i < 11; $i++) {
-            $post = new Post();
-            $post->setLegend($faker->title);
-            $post->setUser($this->getReference('user_' . $i));
-            $post->setPicture('https://loremflickr.com/320/300/all');
-            $post->setSalon($this->getReference('salon_' . (rand(0,1))));
-            $manager->persist($post);
-            $this->addReference('post_' . $i, $post);
-        }
+
+        $post = new Post();
+        $post->setLegend('Le gras c\'est la vie');
+        $post->setUser($this->getReference('user_9'));
+        $post->setPicture('karadoc.jpeg');
+        $post->setSalon($this->getReference('salon_1'));
+        $manager->persist($post);
+        $this->addReference('post_1', $post);
+
+        $post = new Post();
+        $post->setLegend('C\'est pas faux !');
+        $post->setUser($this->getReference('user_10'));
+        $post->setPicture('perceval.jpg');
+        $post->setSalon($this->getReference('salon_1'));
+        $manager->persist($post);
+        $this->addReference('post_2', $post);
+
+        $post = new Post();
+        $post->setLegend('J\'ai pas touchéo !');
+        $post->setUser($this->getReference('user_7'));
+        $post->setPicture('merlin.jpg');
+        $post->setSalon($this->getReference('salon_1'));
+        $manager->persist($post);
+        $this->addReference('post_3', $post);
 
         $manager->flush();
     }

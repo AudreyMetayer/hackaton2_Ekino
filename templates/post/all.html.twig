@@ -13,7 +13,7 @@
     {#
     {% for post in salon.posts %}
         <div>
-            <img src="{{ post.picture }}" alt=""> | {{ post.legend }} <br>
+            <img src="/uploads/{{ post.picture }}" alt=""> | {{ post.legend }} <br>
 
             <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
             <label for="{{ post.id }}">Poste ton commentaire :</label>

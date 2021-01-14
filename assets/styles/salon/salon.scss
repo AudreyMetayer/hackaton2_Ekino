@@ -1,0 +1,71 @@
+.salon{
+  margin-top: 3.3em;
+  margin-inline-start: 0.7em;
+  font-size: 7vw;
+  font-weight: 600;
+}
+
+.beer{
+  margin-inline-start: 3em;
+  padding-right: 0.5em;
+}
+
+.salon-name{
+  margin-inline-start: 0.8em;
+  font-size: 2.7rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin-top: 1em;
+  display: flex;
+  overflow-y: hidden;
+}
+
+.creer-rejoindre{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.creer-rejoindre-text{
+  margin-top: 12em;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+}
+
+h3.creer-salon{
+  margin-right: 3.5em;
+  font-size: 2.5vh;
+
+}
+
+h3.rejoindre{
+  font-size: 2.5vh;
+  padding-right: 1em;
+
+}
+
+.form-salon-name{
+  border: none;
+  border-bottom: 1px solid;
+}
+
+.btn-go{
+  width: 296px;
+  height: 33.38px;
+  background: #EC164B;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 63px;
+  margin-top: 2em;
+}
+
+.title-new-salon{
+color: #EC164B;
+}
+
+.form-salon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
