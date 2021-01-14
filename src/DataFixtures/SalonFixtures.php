@@ -11,8 +11,8 @@ use Doctrine\Persistence\ObjectManager;
 class SalonFixtures extends Fixture implements DependentFixtureInterface
 {
     const SALONS = [
-        'Mes potos',
-        'Ma famille',
+        'Les PHPix de la Wild',
+        'La table ronde',
     ];
 
     private $slugify;
@@ -24,21 +24,22 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $i=0;
-        foreach (self::SALONS as $salonData) {
-            $salon = new Salon();
-            $salon->setName($salonData);
-            $salon->setPicture('/build/images/girl-selfie.b780616d.jpg');
-            $salon->addTheme($this->getReference('theme_' . (rand(0,1))));
-            $salon->setSlug($this->slugify->generate($salonData));
-            for ($j= 0; $j <= rand(1,6); $j++) {
-                $salon->addUser($this->getReference('user_' . rand(0,10)));
-            }
-            $salon->addUser($this->getReference('user_10'));
-            $manager->persist($salon);
-            $this->addReference('salon_' . ($i), $salon);
-            $i++;
-        }
+
+        $salon = new Salon();
+        $salon->setName(self::SALONS[0]);
+        $salon->setPicture('phpix.jpg');
+        $salon->addTheme($this->getReference('theme_3'));
+        $salon->setSlug($this->slugify->generate(self::SALONS[0]));
+        $manager->persist($salon);
+        $this->addReference('salon_0', $salon);
+
+        $salon = new Salon();
+        $salon->setName(self::SALONS[1]);
+        $salon->setPicture('tableronde.jpg');
+        $salon->addTheme($this->getReference('theme_3'));
+        $salon->setSlug($this->slugify->generate(self::SALONS[1]));
+        $manager->persist($salon);
+        $this->addReference('salon_1', $salon);
 
 
         $manager->flush();
