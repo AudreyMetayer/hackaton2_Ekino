@@ -3,8 +3,37 @@
 {% block title %}Salon index{% endblock %}
 
 {% block body %}
-    <h1>Salon index</h1>
+    {% include './components/_navbar.html.twig' %}
+    <h1 class="text-white salon mb-3">Mes salons</h1>
+    <br>
 
+    <div class="d-inline-flex">
+        <img class="beer mr-4" src="{{ asset('build/images/beer.png') }}" width="30%" alt="">
+        <img class="mx-4" src="{{ asset('build/images/famille.png') }}" width="30%" alt="">
+        <img class="mx-4" src="{{ asset('build/images/collegues.png') }}" width="30%" alt="">
+    </div>
+    <div class="d-inline-flex salon-name">
+        <h3 class="salon-name">#TeamDuHaut</h3>
+        <h3 class="salon-name-1">#Famille</h3>
+        <h3 class="salon-name-2">#Wilders</h3>
+    </div>
+    <br>
+    
+    
+    <div>
+        <a href="{{ path('salon_new') }}">
+            <img src="{{ asset('build/images/btn-rouge.png') }}" width="30%" alt="">
+        </a>
+        <a href="{{ path('salon_new') }}">
+            <img src="{{ asset('build/images/btn-vert.png') }}" width="30%" alt="">
+        </a>
+    </div>
+    
+    
+    
+    
+    
+    
     <table class="table">
         <thead>
             <tr>
