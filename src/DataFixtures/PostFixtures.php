@@ -69,6 +69,13 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($post);
         $this->addReference('post_7', $post);
 
+        $post = new Post();
+        $post->setLegend('Moi, Arthur ');
+        $post->setUser($this->getReference('user_1'));
+        $post->setPicture('arthur.jpg');
+        $post->setSalon($this->getReference('salon_1'));
+        $manager->persist($post);
+        $this->addReference('post_8', $post);
 
         $manager->flush();
     }
