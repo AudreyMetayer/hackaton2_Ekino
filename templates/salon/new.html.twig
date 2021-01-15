@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Salon{% endblock %}
+{% block title %}Nouveau Salon {% endblock %}
 
 {% block body %}
-    <h1 class="h3 font-weight-bold mb-5 title-new-salon">Nouveau salon</h1>
+    {% include './components/_navbar.html.twig' %}
+    {% include './component/_back.html.twig' %}
+
+    <h1 class="nouveau-salon">Nouveau salon</h1>
 
     {{ include('salon/_form.html.twig') }}
 
-    <a href="{{ path('salon_index') }}">Retour</a>
+
 {% endblock %}
