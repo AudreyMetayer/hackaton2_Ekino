@@ -48,7 +48,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference('user_2', $user);
 
         $user = new User();
-        $user->setUsername('Victor');
+        $user->setUsername('Geoffrey');
         $user->setEmail('test3@test.com');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'test'));
         $user->addSalon($this->getReference('salon_0'));

@@ -3,6 +3,7 @@
 {% block title %}Salon{% endblock %}
 
 {% block body %}
+    {% include './components/_navbar.html.twig' %}
 
     <div class="ml-2 mt-3">
         <a href="{{ path('salon_index') }}"><i class="fas fa-chevron-left mr-2"></i>Retour</a>

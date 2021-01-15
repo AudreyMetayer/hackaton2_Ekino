@@ -37,6 +37,39 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($post);
         $this->addReference('post_3', $post);
 
+        $post = new Post();
+        $post->setLegend('Tomber la tamise');
+        $post->setUser($this->getReference('user_6'));
+        $post->setPicture('audrey.jpg');
+        $post->setSalon($this->getReference('salon_0'));
+        $manager->persist($post);
+        $this->addReference('post_4', $post);
+
+        $post = new Post();
+        $post->setLegend('Gorges du Verdon 2018');
+        $post->setUser($this->getReference('user_4'));
+        $post->setPicture('seb.jpg');
+        $post->setSalon($this->getReference('salon_0'));
+        $manager->persist($post);
+        $this->addReference('post_5', $post);
+
+        $post = new Post();
+        $post->setLegend('Yannick Noah de coco');
+        $post->setUser($this->getReference('user_2'));
+        $post->setPicture('yacine.jpg');
+        $post->setSalon($this->getReference('salon_0'));
+        $manager->persist($post);
+        $this->addReference('post_6', $post);
+
+        $post = new Post();
+        $post->setLegend('Gualito palmito ');
+        $post->setUser($this->getReference('user_3'));
+        $post->setPicture('gual.jpg');
+        $post->setSalon($this->getReference('salon_0'));
+        $manager->persist($post);
+        $this->addReference('post_7', $post);
+
+
         $manager->flush();
     }
 

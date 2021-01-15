@@ -3,6 +3,7 @@
 {% block title %}New post{% endblock %}
 
 {% block body %}
+    {% include './components/_navbar.html.twig' %}
 
     <div class="ml-2 mt-3">
         <a href="#"><i class="fas fa-chevron-left mr-2"></i>Retour</a>
@@ -15,7 +16,7 @@
         <div>
             <img src="/uploads/{{ post.picture }}" alt=""> | {{ post.legend }} <br>
 
-            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
+            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.name} ) }}">
             <label for="{{ post.id }}">Poste ton commentaire :</label>
             <textarea type="text" name="{{ post.id }}"></textarea>
             <button>Envoie ton commentaire</button>
