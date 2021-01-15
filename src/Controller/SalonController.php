@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\PostRepository;
 
 /**
  * @Route("/salon")
@@ -92,28 +93,31 @@ class SalonController extends AbstractController
     /**
      * @Route("/{id}", name="salon_show", methods={"GET","POST"})
      */
-    public function show(Salon $salon, Request $request): Response
+    public function show(Salon $salon, Request $request, PostRepository $postRepository): Response
     {
         $user = $this->getUser();
+        $postList = $postRepository->findBy(['user' => $user, 'salon' => $salon]);
+        if ($postList) {
+            return $this->redirectToRoute('post_all', [
+                'id' => $salon->getId(),
+            ]);
+        }
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $post->setUser($user);
             $post->setSalon($salon);
             $entityManager->persist($post);
             $entityManager->flush();
-
             return $this->redirectToRoute('post_all', [
                 'id' => $salon->getId(),
             ]);
         }
-
         return $this->render('salon/show.html.twig', [
             'post' => $post,
+            'listPost' => $postList,
             'form' => $form->createView(),
             'salon' => $salon,
         ]);
