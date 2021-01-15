@@ -12,7 +12,7 @@
                 {% for salon in app.user.salons %}
                 <div class="pr-4" >
                     <a href="{{ path('salon_show', {id: salon.id}) }}">
-                        <img class="beer ml-2" src="{{ salon.picture }}" alt="photo du salon" width="370px"  {{ salon.name }}'">
+                        <img class="beer ml-2" src="/uploads/{{ salon.picture }}" alt="photo du salon" width="370px"  {{ salon.name }}'">
                     </a>
                     <h3 class="salon-name mt-3">{{ salon.name }}</h3>
                 </div>
