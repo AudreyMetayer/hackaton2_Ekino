@@ -5,17 +5,45 @@
 {% block body %}
     {% include './components/_navbar.html.twig' %}
 
-<h2>Bienvenue dans votre salon {{ salon.name }}</h2>
+    <div class="ml-2 mt-3">
+        <a href="{{ path('salon_index') }}"><i class="fas fa-chevron-left mr-2"></i>Retour</a>
+    </div>
+    <di class="ml-2 mt-3">
+        <h1 class="ml-2 mt-3" style="color: #EC164B"> #TeamDuHaut</h1>
+    </di>
+    <div style="color: #ffffff; margin-top: 30px;" >
+        <h3 class="text-center mb-2 mt-2"> 13/01/21</h3>
 
-<h4> Votre clé de salon : {{ salon.slug }}</h4>
+        <p class="text-center mb-2" style="">-</p>
+        <h3 class="text-center mb-2">“La plus belle coiffure”</h3>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Poster !') }}</button>
-    {{ form_end(form) }}
+    </div>
 
+    {# <h2>Bienvenue dans votre salon {{ salon.name }}</h2>
+
+    <h4> Votre clé de salon : {{ salon.slug }}</h4> #}
+    <div class="row">
+        <div class="col-md-12  mt-5">
+            {{ form_start(form, { 'attr': {'class': 'upload-form'} }) }}
+            <div class="upload-picture text-center">
+                {{ form_row(form.pictureFile, { 'attr': {'class': 'upload-hackathon'} }) }}
+            </div>
+
+            <div class="add-legend mt-5 text-center mb-5" style="min-width: 200px;">
+                {{ form_row(form.legend) }}
+            </div>
+
+            <div class="btn-post-salon mt-4 text-center">
+            <button class="btn">{{ button_label|default('Poster !') }}</button>
+            {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+{#
     <a href="{{ path('salon_index') }}">back to list</a>
 
 
-    {{ include('salon/_delete_form.html.twig') }}
+    {{ include('salon/_delete_form.html.twig') }}  #}
+
 {% endblock %}

@@ -31,6 +31,18 @@ class PostController extends AbstractController
     }
 
     /**
+     * @Route("/show/{id}", name="_show", methods={"GET","POST"})
+     */
+    public function show(Salon $salon, Request $request): Response
+    {
+
+        return $this->render('post/show.html.twig', [
+            'salon' => $salon,
+
+        ]);
+    }
+
+    /**
      * @Route("/addcomm/{post}/{salon}", name="_addcomm", methods={"GET","POST"})
      * @ParamConverter("salon", class="App\Entity\Salon", options={"mapping": {"salon": "name"}})
      */

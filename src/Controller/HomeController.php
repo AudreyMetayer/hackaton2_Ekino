@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/guide", name="guide")
+     * @Route("/guide", name="_guide")
      */
     public function guide(): Response
     {
