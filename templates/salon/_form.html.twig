@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}{{ form_start(form, {'attr': {'class': 'form-salon'}})  }}
-<div class="mt-3">
-    <p>Nom du salon</p>
+{% block body %}
+    {{ form_start(form, {'attr': {'class': 'form-salon'}})  }}
+<div class="mt-3 mb-5">
+    <h2 class="name-salon">Nom du salon</h2>
     {{ form_row(form.name, {'attr': {'class': 'form-salon-name'}})  }}
 </div>
-<div class="mt-3">
-    <p>Photo du salon</p>
+<div class="mt-5">
+    <h2 class="name-salon">Photo du salon</h2>
     {{ form_row(form.pictureFile, {'attr': {'class': 'form-salon-picture'}})  }}
+
 </div>
 <button class="btn-go" type="submit">C'est parti !</button>
-{{ form_end(form) }}
+    {{ form_end(form) }}
 {% endblock %}

@@ -3,12 +3,13 @@
 {% block title %}New post{% endblock %}
 
 {% block body %}
+    {% include './components/_navbar.html.twig' %}
 
     {% for post in salon.posts %}
         <div>
             <img src="/uploads/{{ post.picture }}" alt=""> | {{ post.legend }} <br>
 
-            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
+            <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.name} ) }}">
             <label for="{{ post.id }}">Poste ton commentaire :</label>
             <textarea type="text" name="{{ post.id }}"></textarea>
             <button>Envoie ton commentaire</button>

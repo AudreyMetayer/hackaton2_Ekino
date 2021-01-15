@@ -32,8 +32,34 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
         $comment->setPost($this->getReference('post_3'));
         $comment->setComment('"Faut arrêter ces conneries de nord et de sud ! Une fois pour toutes, le nord, suivant comment on est tourné, ça change tout !"?');
         $manager->persist($comment);
+        $manager->persist($comment);
 
+        $comment = new Comment();
+        $comment->setUser($this->getReference('user_2'));
+        $comment->setPost($this->getReference('post_4'));
+        $comment->setComment('Récupères Tamise');
+        $manager->persist($comment);
+        $manager->persist($comment);
 
+        $comment = new Comment();
+        $comment->setUser($this->getReference('user_4'));
+        $comment->setPost($this->getReference('post_4'));
+        $comment->setComment('tu étais à londres du soleil?');
+        $manager->persist($comment);
+        $manager->persist($comment);
+
+        $comment = new Comment();
+        $comment->setUser($this->getReference('user_3'));
+        $comment->setPost($this->getReference('post_5'));
+        $comment->setComment('Te noix pas !');
+        $manager->persist($comment);
+        $manager->persist($comment);
+
+        $comment = new Comment();
+        $comment->setUser($this->getReference('user_5'));
+        $comment->setPost($this->getReference('post_5'));
+        $comment->setComment('Je connais cet endroit');
+        $manager->persist($comment);
         $manager->persist($comment);
 
         $manager->flush();

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\Salon;
@@ -31,6 +32,7 @@ class PostController extends AbstractController
 
     /**
      * @Route("/addcomm/{post}/{salon}", name="_addcomm", methods={"GET","POST"})
+     * @ParamConverter("salon", class="App\Entity\Salon", options={"mapping": {"salon": "name"}})
      */
     public function addcomm(Request $request, Post $post, Salon $salon): Response
     {
