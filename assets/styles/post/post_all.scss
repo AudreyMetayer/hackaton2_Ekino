@@ -1,5 +1,18 @@
 
+.Hello{
+  background-image: url("https://i.postimg.cc/hPQ33QFf/homepage2.png");
+  background-repeat: repeat-y;
+  background-position-x: center;
+  background-position-y: top;
+  background-size: 120%;
+  overflow-x: hidden;
+}
 
+.all-header{
+  h3 {
+    color: #FFFFFF;
+  }
+}
 .post img {
   transition: transform 0.3s ease-out;
   &:hover {
