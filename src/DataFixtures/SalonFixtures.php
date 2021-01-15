@@ -12,7 +12,7 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
 {
     const SALONS = [
 
-        'Les PHPix de la Wild',
+        'PHPix de la Wild',
         'La table ronde',
 
     ];
@@ -38,7 +38,7 @@ class SalonFixtures extends Fixture implements DependentFixtureInterface
 
         $salon = new Salon();
         $salon->setName(self::SALONS[1]);
-        $salon->setPicture('tableronde.jpg');
+        $salon->setPicture('tableronde.jpeg');
         $salon->addTheme($this->getReference('theme_3'));
         $salon->setSlug($this->slugify->generate(self::SALONS[1]));
         $manager->persist($salon);
