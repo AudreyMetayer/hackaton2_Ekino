@@ -7,38 +7,22 @@
         <img class="background-img" src="{{ asset('/build/images/girl-selfie.b780616d.jpg') }}" alt="">
         <div class="card welcome-card mx-auto ">
             <div class="index-logo">
-                <img class="index-logo" src="{{ asset('/build/images/logo.1855bc3b.png') }}" alt="">
+                <img class="index-logo" src="{{ asset('/build/images/daylink-full.493695c5.png') }}" width="70%" alt="">
             </div>
             <div class="row d-inline-block mx-auto">
                 <div class="welcome-btn">
-                    <a role="button" class="btn connexion btn-block mt-3" href="{{ path('app_login') }}"><p>Connexion</p>
-                        <span class="arrow-btn">
-                            <svg width="31" height="13" color="white" viewBox="0 0 31 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="-0.00012207" y1="5.99925" x2="30.295" y2="5.99925" stroke="black"/>
-                                <line y1="-0.5" x2="7.68468" y2="-0.5" transform="matrix(0.830128 0.557574 -0.383031 0.923735 23.8032 1.90909)" stroke="black"/>
-                                <line y1="-0.5" x2="7.97281" y2="-0.5" transform="matrix(0.72298 -0.690869 0.508103 0.861296 24.5245 12.0074)" stroke="black"/>
-                            </svg>
-                        </span>
+                    <a role="button" class="btn connexion btn-block mt-3" href="{{ path('app_login') }}">
+                        <p class="home-p">Connexion</p>
                     </a>
-                    <a role="button" class="btn inscription btn-block" href="{{ path('app_register') }}"><p>Inscription</p>
+                    <a role="button" class="btn inscription btn-block" href="{{ path('app_register') }}">
+                        <p class="home-p">Inscription</p>
                         <span class="arrow-btn">
-                            <svg width="31" height="13" color="white" viewBox="0 0 31 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="-0.00012207" y1="5.99925" x2="30.295" y2="5.99925" stroke="black"/>
-                                <line y1="-0.5" x2="7.68468" y2="-0.5" transform="matrix(0.830128 0.557574 -0.383031 0.923735 23.8032 1.90909)" stroke="black"/>
-                                <line y1="-0.5" x2="7.97281" y2="-0.5" transform="matrix(0.72298 -0.690869 0.508103 0.861296 24.5245 12.0074)" stroke="black"/>
-                            </svg>
                         </span>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-
-    {#
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                        </svg>
-    #}
 
 {% endblock %}
 

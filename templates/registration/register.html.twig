@@ -3,34 +3,35 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
+    {% include './components/_navbar.html.twig' %}
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1 class="h3 font-weight-bold text-center mb-5">Inscription</h1>
+    <h1 class="nouveau-salon">Inscription</h1>
 
     {{ form_start(registrationForm, {'attr': {'class': 'form-register'}}) }}
-    <div>
+    <div class="name-salon">
         <p>Nom d'utilisateur</p>
         {{ form_row(registrationForm.username, {'attr': {'class': 'form-username'}}) }}
     </div>
 
-    <div class="mt-3">
+    <div class="name-salon">
         <p>Email</p>
         {{ form_row(registrationForm.email, {'attr': {'class': 'form-email'}}) }}
     </div>
 
-    <div class="mt-3">
+    <div class="name-salon">
         <p>Mot de passe</p>
         {{ form_row(registrationForm.plainPassword, {'attr': {'class': 'form-password'}}) }}
     </div>
 
-    <div class="mt-3 d-flex">
-        <p>J'accepte les conditions générales d'utilisation</p>
+    <div class="condition-utilisation">
+        <p class="pl-4">J'accepte les conditions générales d'utilisation</p>
         {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-cgu'}}) }}
 
     </div>
 
-    <button class="btn-register" type="submit">Je m'inscris</button>
+    <button class="btn-go" type="submit">Je m'inscris</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

@@ -3,8 +3,13 @@
 {% block title %}Salon access{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
+    {% include './components/_navbar.html.twig' %}
+    {% include './component/_back.html.twig' %}
+
+    <h1 class="nouveau-salon">Rejoindre un salon</h1>
+    <h3 class="name-salon">Clé du salon</h3>
+    {{ form_start(form.salon, {'attr': {'class': 'form-access'}}) }}
     {{ form_widget(form) }}
-    <button>Search</button>
+    <button class="btn-go acceder">Accéder</button>
     {{ form_end(form) }}
 {% endblock %}

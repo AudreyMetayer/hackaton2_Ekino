@@ -3,6 +3,7 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+    {% include './components/_navbar.html.twig' %}
     <div class="welcome">
         <img class="background-img" src="{{ asset('/build/images/girl-selfie.b780616d.jpg') }}" alt="">
         <div class="card guide-card mx-auto ">

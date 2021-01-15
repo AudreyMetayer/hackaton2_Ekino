@@ -17,3 +17,16 @@ body{
   position: relative;
   z-index: 2;
 }
+
+.retour{
+  color: #494949;
+  font-size: 2rem;
+  &:hover{
+    text-decoration: none;
+    color: black;
+  }
+}
+
+a.retour{
+  margin-inline-start: 1.5em;
+}
