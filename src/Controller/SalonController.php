@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\DataFixtures\ThemeFixtures;
 use App\Entity\Post;
 use App\Entity\Salon;
 use App\Form\AccessSalonType;
 use App\Form\PostType;
 use App\Form\SalonType;
 use App\Repository\SalonRepository;
+use App\Repository\ThemeRepository;
 use App\Service\Slugify;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,17 +36,21 @@ class SalonController extends AbstractController
     /**
      * @Route("/new", name="salon_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Slugify $slugify): Response
+    public function new(Request $request, ThemeRepository $themeRepository,Slugify $slugify): Response
     {
         $salon = new Salon();
         $form = $this->createForm(SalonType::class, $salon);
         $form->handleRequest($request);
         $user = $this->getUser();
+        $themes = $themeRepository->findAll();
+        $themeRandom = $themes[array_rand($themes,1)];
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $slug = $slugify->generate($salon->getName());
             $salon->setSlug($slug);
+            $salon->addTheme($themeRandom);
             $salon->addUser($user);
             $entityManager->persist($salon);
             $entityManager->flush();
@@ -88,10 +94,11 @@ class SalonController extends AbstractController
      */
     public function show(Salon $salon, Request $request): Response
     {
+        $user = $this->getUser();
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
-        $user = $this->getUser();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
