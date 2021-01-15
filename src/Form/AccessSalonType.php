@@ -12,7 +12,12 @@ class AccessSalonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('salon',SearchType::class)
+            ->add('salon',SearchType::class,[
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Entrez une clé de salon'
+                ]
+            ])
         ;
     }
 

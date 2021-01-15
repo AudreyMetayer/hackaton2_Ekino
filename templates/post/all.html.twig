@@ -3,6 +3,7 @@
 {% block title %}New post{% endblock %}
 
 {% block body %}
+    {% include './components/_navbar.html.twig' %}
 
     {% for post in salon.posts %}
         <div>
