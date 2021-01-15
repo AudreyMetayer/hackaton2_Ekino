@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\PostRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\Comment;
 use App\Entity\Post;
@@ -21,12 +22,12 @@ class PostController extends AbstractController
     /**
      * @Route("/all/{id}", name="_all", methods={"GET","POST"})
      */
-    public function posts(Salon $salon, Request $request): Response
+    public function posts(Salon $salon,PostRepository $postRepository, Request $request): Response
     {
 
         return $this->render('post/all.html.twig', [
             'salon' => $salon,
-
+            'post' => $salon->getPosts()
         ]);
     }
 

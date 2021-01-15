@@ -4,19 +4,20 @@
 
 {% block body %}
     {% include './components/_navbar.html.twig' %}
-
+{% dump(salon) %}
     <div class="ml-2 mt-3">
         <a href="{{ path('salon_index') }}"><i class="fas fa-chevron-left mr-2"></i>Retour</a>
     </div>
     <di class="ml-2 mt-3">
-        <h1 class="ml-2 mt-3" style="color: #EC164B"> #TeamDuHaut</h1>
+        <h1 class="ml-2 mt-3" style="color: #EC164B"> #{{ salon.name }}</h1>
     </di>
     <div style="color: #ffffff; margin-top: 30px;" >
         <h3 class="text-center mb-2 mt-2"> 13/01/21</h3>
 
         <p class="text-center mb-2" style="">-</p>
-        <h3 class="text-center mb-2">“La plus belle coiffure”</h3>
-
+        {% for theme in salon.themes %}
+        <h3 class="text-center mb-2">"{{ theme.theme }}"</h3>
+        {% endfor %}
     </div>
 
     {# <h2>Bienvenue dans votre salon {{ salon.name }}</h2>

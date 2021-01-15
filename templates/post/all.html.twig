@@ -9,7 +9,7 @@
         <a href="#"><i class="fas fa-chevron-left mr-2"></i>Retour</a>
     </div>
     <di class="ml-2 mt-3">
-        <h1 class="ml-2 mt-3" style="color: #EC164B"> #TeamDuHaut</h1>
+        <h1 class="ml-2 mt-3" style="color: #EC164B"> #{{ salon.name }}</h1>
     </di>
     {#
     {% for post in salon.posts %}
@@ -38,53 +38,59 @@
         <p class="text-center text-muted mb-2" style="">-</p>
         <h3 class="text-center text-muted mb-2">“La plus belle coiffure”</h3>
 
-        {% for row in salon.posts|batch(3) %}
+
 
             <div class="row mx-auto ">
-                {% for post in row %}
+                {% for post in salon.posts %}
                     <div class="card d-flex text-center m-3" style="min-width: 380px; margin-top: 30px">
 
                         <article class="post bg-white rounded shadow">
                             <div class="mw-100 overflow-hidden rounded-top">
-                                <a href="{{ path('post_show', {id: post.id}) }}"><img src="{{ post.picture }}" alt="{{ post.legend }}" class="w-100" /></a>
+                                <a href="{{ path('post_show', {id: post.id}) }}"><img src="/uploads/{{ post.picture }}" alt="{{ post.legend }}" class="w-100" /></a>
                             </div>
-                            <h2 class="h5 pt-3 text-center"><a href="{{ path('post_show', {id: post.id}) }}" data-toggle="modal" data-target="#modal_post_{{ 1 }}"
-                                                               class="text-secondary text-decoration-none"> Afficher les commentaires </a></h2>
-
+                            {#
+                            <h2 class="h5 pt-3 text-center"><a href="{{ path('post_show', {id: post.id}) }}" data-toggle="modal" data-target="#modal_post_{{ post.id }}"
+                                                               class="text-secondary text-decoration-none"> Poster un commentaire </a></h2>
+                            #}
                             <p class="text-muted text-center pb-2"><small>Submitted by {{ post.user.username }}</small></p>
 
                         </article>
+                        {% for comment in post.comments %}
+
+                            {{ comment.user.username }}
+                            {{ comment.comment }}
+                        {% endfor %}
+
+                        <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.name} ) }}">
+                            <label for="{{ post.id }}">Poste ton commentaire :</label>
+                            <textarea type="text" name="{{ post.id }}"></textarea>
+                            <button>Envoie ton commentaire</button>
+                        </form>
 
                     </div>
                 {% endfor %}
 
             </div>
-        {% endfor %}
     {% else %}
         <p class="h1 text-center">No post yet. <a href="{{ path('salon_new') }}">Be the first !</a> </p>
     {% endif %}
 
-
+{#
     <div class="row">
         <div class="col-md-12">
-            <div class="modal modal-lg fade" id="modal_post_{{ 1 }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            <div class="modal modal-lg fade" id="modal_post_{{ post.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                  aria-hidden="true">
 
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document" style="min-width: 80%">
 
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Post {{ 1}}</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Post {{ post.id }}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            {% for post in salon.posts %}
-                                <div>
-                                    <div class="d-flex overflow-hidden mt-3" style="flex-direction: column">
-                                        <img src="{{ post.picture }}" class="mw-100" alt=""> {# <br> {{ post.legend }}#}
-                                    </div>
 
                                     <form method="POST" action="{{ path('post_addcomm', {post: post.id, salon: salon.id} ) }}">
                                         <div class="row mt-3 ml-1 text-muted">
@@ -97,21 +103,11 @@
                                         </div>
                                     </form>
 
-                                    <div class="card mt-5 shadow" style="border: none;">
-                                        <div class="comments text-muted mb-2">
-                                            <h5><i>Commentaires:</i></h5>
-                                        </div>
-                                        {% for comment in post.comments %}
-                                            <div class="col-12 ">
-                                                <p>{{ comment.comment }} #<i>{{ comment.user.username }}</i></p>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
 
 
                                 </div>
 
-                            {% endfor %}
+
 
                         </div>
                     </div>
@@ -119,6 +115,6 @@
             </div>
         </div>
     </div>
-
+#}
 
 {% endblock %}
