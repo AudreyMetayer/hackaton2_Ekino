@@ -13,7 +13,6 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
 
-
         $comment = new Comment();
         $comment->setUser($this->getReference('user_7'));
         $comment->setPost($this->getReference('post_1'));
