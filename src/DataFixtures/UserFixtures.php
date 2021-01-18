@@ -27,7 +27,6 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
         $user->setEmail('test@test.com');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'test'));
         $user->addSalon($this->getReference('salon_0'));
-        $user->addSalon($this->getReference('salon_1'));
         $manager->persist($user);
         $this->addReference('user_1', $user);
 

@@ -4,12 +4,10 @@
   font-size: 7vw;
   font-weight: 600;
 }
-
 .beer{
   margin-inline-start: 3em;
   padding-right: 0.5em;
 }
-
 img.beer.ml-2{
   border-radius: 40px;
 }
@@ -22,13 +20,11 @@ img.beer.ml-2{
   display: flex;
   overflow-y: hidden;
 }
-
 .creer-rejoindre{
   display: flex;
   justify-content: center;
   text-align: center;
 }
-
 .creer-rejoindre-text{
   margin-top: 12em;
   display: flex;
@@ -36,24 +32,18 @@ img.beer.ml-2{
   text-align: center;
   color: #ffffff;
 }
-
 h3.creer-salon{
   margin-right: 3.5em;
   font-size: 2.5vh;
-
 }
-
 h3.rejoindre{
   font-size: 2.5vh;
   padding-right: 1em;
-
 }
-
 .form-salon-name{
   border: none;
   border-bottom: 1px solid;
 }
-
 .btn-go{
   background: #EC164B;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -63,20 +53,15 @@ h3.rejoindre{
   width: 650px;
   font-size: 2.5em;
   color: white;
-
 }
-
 .title-new-salon{
-color: #EC164B;
+  color: #EC164B;
 }
-
 .form-salon {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-
 input#salon_name.form-salon-name,
 input#salon_pictureFile_file.form-salon-picture,
 input#access_salon_salon,
@@ -84,14 +69,15 @@ input#inputEmail.form-log,
 input#inputPassword.form-log,
 input#registration_form_username.form-username,
 input#registration_form_email.form-email,
-input#registration_form_plainPassword.form-password {
+input#registration_form_plainPassword.form-password,
+input#post_pictureFile_file.vich-btn,
+input#post_legend{
   border: none;
   border-bottom: 1px solid;
   background: none;
   width: 800px;
   font-size: 2rem;
 }
-
 .nouveau-salon{
   font-size: 4em;
   margin-block-start: 2em;
@@ -100,27 +86,22 @@ input#registration_form_plainPassword.form-password {
   font-weight: 600;
   margin-bottom: 2em;
 }
-
 .name-salon{
   font-size: 2.7rem;
   color: #ffffff;
   padding-bottom: 0.5em;
   font-weight: 300;
 }
-
 h3.name-salon{
   margin-inline-start: 2.6em;
   margin-top: 5em;
 }
-
 form.form-access{
   margin-inline-start: 7em;
 }
-
 button.btn-go{
   margin-inline-start: 1.5em;
 }
-
 .condition-utilisation{
   font-size: 2.5rem;
   color: white;
@@ -128,12 +109,13 @@ button.btn-go{
   display: flex;
   flex-direction: row-reverse;
 }
-
 input#registration_form_agreeTerms.form-cgu {
   width: 35px;
   height: 35px;
 }
-
 .acceder{
   margin-block-start: 6em;
+}
+button.btn-go.sos{
+  margin-inline-start: 4.5em;
 }
